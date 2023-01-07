@@ -1,83 +1,90 @@
 <template>
   <form @submit.prevent="update">
-    <div>
-      <label for="beds">Beds</label>
-      <input id="beds" v-model.number="form.beds" type="text" name="beds" />
-      <div v-if="form.errors.beds">
-        {{ form.errors.beds }}
+    <div class="grid grid-cols-6 gap-4">
+      <div class="col-span-2">
+        <label class="label" for="beds">Beds</label>
+        <input id="beds" v-model.number="form.beds" type="text" name="beds" class="input" />
+        <div v-if="form.errors.beds" class="input-error">
+          {{ form.errors.beds }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="bathrooms">Bathrooms</label>
-      <input
-        id="bathrooms"
-        v-model.number="form.bathrooms"
-        type="text"
-        name="bathrooms"
-      />
-      <div v-if="form.errors.bathrooms">
-        {{ form.errors.bathrooms }}
+      <div class="col-span-2">
+        <label class="label" for="bathrooms">Bathrooms</label>
+        <input
+          id="bathrooms"
+          v-model.number="form.bathrooms"
+          type="text"
+          name="bathrooms"
+          class="input"
+        />
+        <div v-if="form.errors.bathrooms" class="input-error">
+          {{ form.errors.bathrooms }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="area">Area</label>
-      <input id="area" v-model.number="form.area" type="text" name="area" />
-      <div v-if="form.errors.area">
-        {{ form.errors.area }}
+      <div class="col-span-2">
+        <label class="label" for="area">Area</label>
+        <input id="area" v-model.number="form.area" type="text" name="area" class="input" />
+        <div v-if="form.errors.area" class="input-error">
+          {{ form.errors.area }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="city">City</label>
-      <input id="city" v-model="form.city" type="text" name="city" />
-      <div v-if="form.errors.city">
-        {{ form.errors.city }}
+
+      <div class="col-span-4">
+        <label class="label" for="city">City</label>
+        <input id="city" v-model="form.city" type="text" name="city" class="input" />
+        <div v-if="form.errors.city" class="input-error">
+          {{ form.errors.city }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="street">Street</label>
-      <input id="street" v-model="form.street" type="text" name="street" />
-      <div v-if="form.errors.street">
-        {{ form.errors.street }}
+      <div class="col-span-2">
+        <label class="label" for="code">Post Code</label>
+        <input
+          id="code"
+          v-model="form.postal_code"
+          type="text"
+          name="postal_code"
+          class="input"
+        />
+        <div v-if="form.errors.postal_code" class="input-error">
+          {{ form.errors.postal_code }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="code">Post Code</label>
-      <input
-        id="code"
-        v-model="form.postal_code"
-        type="text"
-        name="postal_code"
-      />
-      <div v-if="form.errors.postal_code">
-        {{ form.errors.postal_code }}
+      <div class="col-span-4">
+        <label class="label" for="street">Street</label>
+        <input id="street" v-model="form.street" type="text" name="street" class="input" />
+        <div v-if="form.errors.street" class="input-error">
+          {{ form.errors.street }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="st_number">Street N°</label>
-      <input
-        id="st_number"
-        v-model="form.street_number"
-        type="text"
-        name="street_number"
-      />
-      <div v-if="form.errors.street_number">
-        {{ form.errors.street_number }}
+      <div class="col-span-2">
+        <label class="label" for="st_number">Street N°</label>
+        <input
+          id="st_number"
+          v-model="form.street_number"
+          type="text"
+          name="street_number"
+          class="input"
+        />
+        <div v-if="form.errors.street_number" class="input-error">
+          {{ form.errors.street_number }}
+        </div>
       </div>
-    </div>
-    <div>
-      <label for="price">Price</label>
-      <input
-        id="price"
-        v-model.number="form.price"
-        type="text"
-        name="price"
-      />
-      <div v-if="form.errors.price">
-        {{ form.errors.price }}
+      <div class="col-span-6">
+        <label class="label" for="price">Price</label>
+        <input
+          id="price"
+          v-model.number="form.price"
+          type="text"
+          name="price"
+          class="input"
+        />
+        <div v-if="form.errors.price" class="input-error">
+          {{ form.errors.price }}
+        </div>
       </div>
-    </div>
-    <div>
-      <button type="submit">Save</button>
+      <div class="col-span-6">
+        <button type="submit" class="btn-primary">Save</button>
+      </div>
     </div>
   </form>
 </template>
