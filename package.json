@@ -6,6 +6,7 @@
     "fix:eslint": "eslint --ext .js,.vue resources/js/ --fix"
   },
   "devDependencies": {
+    "@prettier/plugin-php": "^0.19.2",
     "@tailwindcss/forms": "^0.5.3",
     "@vitejs/plugin-vue": "^4.0.0",
     "autoprefixer": "^10.4.13",
