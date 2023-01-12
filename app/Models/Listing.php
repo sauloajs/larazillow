@@ -19,4 +19,9 @@ class Listing extends Model
     'street_number',
     'price',
   ];
+
+  public function owner()
+  {
+    return $this->belongsTo(\App\Models\User::class);
+  }
 }

@@ -52,4 +52,9 @@ class User extends Authenticatable
         set: fn ($value) => Hash::make($value),
       );
     }
+
+    public function listings()
+    {
+      return $this->hasMany(\App\Models\Listing::class);
+    }
 }
