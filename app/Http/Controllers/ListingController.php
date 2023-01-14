@@ -4,10 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ListingRequest;
 use App\Models\Listing;
+use Auth;
 use Illuminate\Http\Request;
 
 class ListingController extends Controller
 {
+  public function __construct()
+  {
+    $this->authorizeResource(Listing::class, 'listing');
+  }
+
   public function index()
   {
     return inertia(
@@ -27,10 +33,12 @@ class ListingController extends Controller
 
   public function store(ListingRequest $request)
   {
-    $listing = Listing::create($request->validated());
+    $listing = Listing::make($request->validated());
+    $request->user()->listings()->save($listing);
+
 
     return redirect()->route('listing.index')
-    ->with('success', 'Listing was created!');
+      ->with('success', 'Listing was created!');
   }
 
   public function show(Listing $listing)
@@ -58,7 +66,7 @@ class ListingController extends Controller
     $listing->update($request->validated());
 
     return redirect()->route('listing.index')
-    ->with('success', 'Listing was updated!');
+      ->with('success', 'Listing was updated!');
   }
 
   /**
