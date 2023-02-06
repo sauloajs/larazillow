@@ -1,16 +1,16 @@
 <template>
-  <header class="w-full border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+  <header class="w-full bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800">
     <div class="container mx-auto">
-      <nav class="p-4 flex items-center justify-between">
+      <nav class="flex items-center justify-between p-4">
         <div class="text-lg">
           <Link :href="route('listing.index')">Listings</Link>
         </div>
-        <div class="text-xl text-indigo-600 dark:text-indigo-300 font-bold text-center">
+        <div class="text-xl font-bold text-center text-indigo-600 dark:text-indigo-300">
           <Link :href="route('listing.index')">LaraZillow</Link>
         </div>
         <div v-if="user" class="flex items-center gap-4">
-          <div class="text-gray-400">{{ user.name }}</div>
-          <Link :href="route('listing.create')" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium p-2 rounded-md">+ New Listing</Link>
+          <Link :href="route('realtor.listing.index')" class="text-gray-400">{{ user.name }}</Link>
+          <Link :href="route('realtor.listing.create')" class="p-2 font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500">+ New Listing</Link>
           <Link :href="route('logout')" method="delete" as="button">Logout</Link>
         </div>
         <div v-else class="flex gap-4">
@@ -21,8 +21,8 @@
     </div>
   </header>
 
-  <main class="container mx-auto p-4 w-full">
-    <div v-if="flashSuccess" class="mb-4 border rounded-md shadow-sm border-green-200 dark:border-green-800 bg-green-50 dark:bg-green-900 p-2">
+  <main class="container w-full p-4 mx-auto">
+    <div v-if="flashSuccess" class="p-2 mb-4 border border-green-200 rounded-md shadow-sm dark:border-green-800 bg-green-50 dark:bg-green-900">
       {{ flashSuccess }}
     </div>
     <slot />
