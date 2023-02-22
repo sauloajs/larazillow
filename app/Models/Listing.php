@@ -24,21 +24,59 @@ class Listing extends Model
         'price',
     ];
 
+    /**
+     * The listing must have an owner
+     *
+     * @return BelongsTo
+     */
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(\App\Models\User::class);
+        return $this->belongsTo(User::class);
     }
 
+    /**
+     * The listing can have many images
+     *
+     * @return HasMany
+     */
     public function images(): HasMany
     {
         return $this->hasMany(ListingImage::class);
     }
 
+    /**
+     * The listing can have many offers
+     *
+     * @return HasMany
+     */
+    public function offers(): HasMany
+    {
+        return $this->hasMany(
+            Offer::class,
+            'listing_id'
+        );
+    }
+
+    /**
+     * Get the listings by the newest
+     *
+     * @param Builder $query The listings query to be ordered
+     *
+     * @return Builder
+     */
     public function scopeMostRecent(Builder $query): Builder
     {
         return $query->latest();
     }
 
+    /**
+     * Get the listings and apply filters
+     *
+     * @param Builder $query   The listings query to be filtered
+     * @param array   $filters The filters to be applied
+     *
+     * @return Builder
+     */
     public function scopeFilter(Builder $query, array $filters): Builder
     {
         return $query->when(

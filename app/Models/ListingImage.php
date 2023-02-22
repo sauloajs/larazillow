@@ -18,12 +18,22 @@ class ListingImage extends Model
         'src'
     ];
 
+    /**
+     * All listing images must have a listing
+     *
+     * @return BelongsTo
+     */
     public function listing(): BelongsTo
     {
         return $this->belongsTo(Listing::class);
     }
 
-    public function getSrcAttribute()
+    /**
+     * Get the asset for the image link
+     *
+     * @return string
+     */
+    public function getSrcAttribute(): string
     {
         return asset("storage/$this->filename");
     }
