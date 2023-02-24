@@ -1,9 +1,7 @@
 <template>
   <Box>
     <template #header>Upload Images</template>
-    <form
-      @submit.prevent="upload"
-    >
+    <form @submit.prevent="upload">
       <section class="flex items-center gap-2 my-4">
         <input
           type="file"
@@ -30,10 +28,19 @@
   <Box v-if="listing.images.length" class="mt-4">
     <template #header>Current Images</template>
     <section class="grid grid-cols-3 gap-4 mt-4">
-      <div v-for="image in listing.images" :key="image.id" class="flex flex-col justify-between">
+      <div
+        v-for="image in listing.images"
+        :key="image.id"
+        class="flex flex-col justify-between"
+      >
         <img :src="image.src" class="rounded-md" />
         <Link
-          :href="route('realtor.listing.image.destroy', { listing: listing.id, image: image.id })"
+          :href="
+            route('realtor.listing.image.destroy', {
+              listing: listing.id,
+              image: image.id,
+            })
+          "
           as="button"
           method="DELETE"
           class="mt-2 text-xs btn-outline"
@@ -54,10 +61,9 @@ import NProgress from 'nprogress'
 
 Inertia.on('progress', (e) => {
   if (e.detail.progress.percentage) {
-    NProgress.set((e.detail.progress.percentage / 100) * 0.9 )
+    NProgress.set((e.detail.progress.percentage / 100) * 0.9)
   }
 })
-
 
 const props = defineProps({ listing: Object })
 
@@ -68,12 +74,9 @@ const form = useForm({
 const imageErrors = computed(() => Object.values(form.errors))
 
 const upload = () => {
-  form.post(
-    route('realtor.listing.image.store', { listing: props.listing.id }),
-    {
-      onSuccess: () => form.reset('images'),
-    },
-  )
+  form.post(route('realtor.listing.image.store', { listing: props.listing.id }), {
+    onSuccess: () => form.reset('images'),
+  })
 }
 
 const addFiles = (e) => {

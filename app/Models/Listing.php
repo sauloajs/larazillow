@@ -22,6 +22,7 @@ class Listing extends Model
         'street',
         'street_number',
         'price',
+        'sold_at',
     ];
 
     /**
@@ -115,5 +116,17 @@ class Listing extends Model
                 $filters['order'] ?? 'desc'
             )
         );
+    }
+
+    /**
+     * Return all listings not sold yet
+     *
+     * @param Builder $builder The query to be changed
+     *
+     * @return Builder
+     */
+    public function scopeWithoutSold(Builder $builder): Builder
+    {
+        return $this->whereNull('sold_at');
     }
 }

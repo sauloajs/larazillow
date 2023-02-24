@@ -13,6 +13,12 @@
         class="flex flex-col justify-between gap-2 md:flex-row md:items-center"
       >
         <div :class="{ 'opacity-25': listing.deleted_at }">
+          <div
+            v-if="listing.sold_at != null"
+            class="inline-block p-1 mb-2 text-xs font-bold text-green-500 uppercase border border-green-300 border-dashed rounded-md dark:border-green-600 dark:text-green-600"
+          >
+            Sold
+          </div>
           <div class="items-center gap-2 xl:flex">
             <Price :price="listing.price" class="text-2xl font-medium" />
             <ListingSpace :listing="listing" />
@@ -71,6 +77,14 @@
               class="block w-full text-xs font-medium text-center btn-outline"
             >
               Images ({{ listing.images_count }})
+            </Link>
+          </div>
+          <div class="mt-2">
+            <Link
+              :href="route('realtor.listing.show', { listing: listing.id })"
+              class="block w-full text-xs font-medium text-center btn-outline"
+            >
+              Offers ({{ listing.offers_count }})
             </Link>
           </div>
         </section>
