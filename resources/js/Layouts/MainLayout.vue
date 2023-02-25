@@ -9,6 +9,18 @@
           <Link :href="route('listing.index')">LaraZillow</Link>
         </div>
         <div v-if="user" class="flex items-center gap-4">
+          <Link
+            :href="route('notification.index')"
+            class="relative py-2 pr-2 text-lg text-gray-500"
+          >
+            🔔
+            <div
+              v-if="notificationCount"
+              class="absolute top-0 right-0 w-5 h-5 text-xs font-medium text-center text-white bg-red-700 border border-white rounded-full dark:bg-red-400 dark:border-gray-900"
+            >
+              {{ notificationCount }}
+            </div>
+          </Link>
           <Link :href="route('realtor.listing.index')" class="text-gray-400">{{ user.name }}</Link>
           <Link :href="route('realtor.listing.create')" class="p-2 font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500">+ New Listing</Link>
           <Link :href="route('logout')" method="delete" as="button">Logout</Link>
@@ -37,6 +49,9 @@ const page = usePage()
 
 const flashSuccess = computed(() => page.props.value.flash.success)
 const user = computed(() => page.props.value.user)
+const notificationCount = computed(
+  () => Math.min(page.props.value.user.notificationCount, 9),
+)
 
 </script>
 
